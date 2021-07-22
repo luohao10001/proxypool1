@@ -3,9 +3,9 @@ package provider
 import (
 	"strings"
 
-	"github.com/Sansui233/proxypool/pkg/tool"
+	"github.com/luohao10001/proxy/pkg/tool"
 
-	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/luohao10001/proxy/pkg/proxy"
 )
 
 // Surge provides functions that make proxies support clash client
@@ -27,13 +27,13 @@ func (s Surge) Provide() string {
 }
 
 func checkSurgeSupport(p proxy.Proxy) bool {
-	switch p.(type) {
+	switch p := p.(type) {
 	case *proxy.ShadowsocksR:
 		return false
 	case *proxy.Vmess:
 		return true
 	case *proxy.Shadowsocks:
-		ss := p.(*proxy.Shadowsocks)
+		ss := p
 		if tool.CheckInList(proxy.SSCipherList, ss.Cipher) {
 			return true
 		}

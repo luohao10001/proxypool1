@@ -3,7 +3,7 @@ package provider
 import (
 	"strings"
 
-	"github.com/Sansui233/proxypool/pkg/tool"
+	"github.com/luohao10001/proxy/pkg/tool"
 )
 
 type VmessSub struct {

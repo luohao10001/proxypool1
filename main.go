@@ -2,15 +2,15 @@ package main
 
 import (
 	"flag"
+	"github.com/luohao10001/proxy/pkg/geoIp"
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/Sansui233/proxypool/api"
-	"github.com/Sansui233/proxypool/internal/app"
-	"github.com/Sansui233/proxypool/internal/cron"
-	"github.com/Sansui233/proxypool/internal/database"
-	"github.com/Sansui233/proxypool/log"
-	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/luohao10001/proxy/api"
+	"github.com/luohao10001/proxy/internal/app"
+	"github.com/luohao10001/proxy/internal/cron"
+	"github.com/luohao10001/proxy/internal/database"
+	"github.com/luohao10001/proxy/log"
 )
 
 var configFilePath = ""
@@ -28,6 +28,7 @@ func main() {
 	log.SetLevel(log.INFO)
 	if debugMode {
 		log.SetLevel(log.DEBUG)
+		log.Debugln("=======Debug Mode=======")
 	}
 	if configFilePath == "" {
 		configFilePath = os.Getenv("CONFIG_FILE")
@@ -44,7 +45,7 @@ func main() {
 	database.InitTables()
 	// init GeoIp db reader and map between emoji's and countries
 	// return: struct geoIp (dbreader, emojimap)
-	err = proxy.InitGeoIpDB()
+	err = geoIp.InitGeoIpDB()
 	if err != nil {
 		os.Exit(1)
 	}

@@ -3,7 +3,7 @@ package proxy
 import (
 	"errors"
 
-	"github.com/Sansui233/proxypool/pkg/tool"
+	"github.com/luohao10001/proxy/pkg/tool"
 )
 
 var ErrorTypeCanNotConvert = errors.New("type not support")
@@ -26,7 +26,6 @@ func Convert2SSR(p Proxy) (ssr *ShadowsocksR, err error) {
 			Cipher:   ss.Cipher,
 			Protocol: "origin",
 			Obfs:     "plain",
-			Group:    "",
 		}, nil
 	}
 	return nil, ErrorTypeCanNotConvert
